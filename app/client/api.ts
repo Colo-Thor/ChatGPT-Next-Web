@@ -148,13 +148,24 @@ export function getHeaders() {
   };
   const modelConfig = useChatStore.getState().currentSession().mask.modelConfig;
   const isGoogle = modelConfig.model === "gemini-pro";
-  const isAzure = accessStore.provider === ServiceProvider.Azure;
+
+  let isAzure;
+  if (accessStore.useCustomConfig) {
+    isAzure = accessStore.provider === ServiceProvider.Azure;
+  } else {
+    isAzure = false;
+  }
+
   const authHeader = isAzure ? "api-key" : "Authorization";
-  let apiKey = isGoogle
+  
+  let apiKey;
+  if (accessStore.useCustomConfig) {
+    apiKey = isGoogle
     ? accessStore.googleApiKey
     : isAzure
     ? accessStore.azureApiKey
     : accessStore.openaiApiKey;
+  }
 
   if (apiKey === undefined || apiKey === null || apiKey === "") {
       apiKey = accessStore.apiKey
