@@ -150,11 +150,15 @@ export function getHeaders() {
   const isGoogle = modelConfig.model === "gemini-pro";
   const isAzure = accessStore.provider === ServiceProvider.Azure;
   const authHeader = isAzure ? "api-key" : "Authorization";
-  const apiKey = isGoogle
+  let apiKey = isGoogle
     ? accessStore.googleApiKey
     : isAzure
     ? accessStore.azureApiKey
     : accessStore.openaiApiKey;
+
+  if (apiKey === undefined || apiKey === null || apiKey === "") {
+      apiKey = accessStore.apiKey
+  }
 
   const makeBearer = (s: string) => `${isAzure ? "" : "Bearer "}${s.trim()}`;
   const validString = (x: string) => x && x.length > 0;
