@@ -269,12 +269,12 @@ yarn dev
 ### Docker (Recommended)
 
 ```shell
-docker pull yidadaa/chatgpt-next-web
+docker pull colothor/chatgpt-next-web
 
 docker run -d -p 3000:3000 \
    -e OPENAI_API_KEY=sk-xxxx \
    -e CODE=your-password \
-   yidadaa/chatgpt-next-web
+   colothor/chatgpt-next-web
 ```
 
 You can start service behind a proxy:
@@ -284,7 +284,7 @@ docker run -d -p 3000:3000 \
    -e OPENAI_API_KEY=sk-xxxx \
    -e CODE=your-password \
    -e PROXY_URL=http://localhost:7890 \
-   yidadaa/chatgpt-next-web
+   colothor/chatgpt-next-web
 ```
 
 If your proxy needs password, use:
@@ -296,7 +296,7 @@ If your proxy needs password, use:
 ### Shell
 
 ```shell
-bash <(curl -s https://raw.githubusercontent.com/Yidadaa/ChatGPT-Next-Web/main/scripts/setup.sh)
+bash <(curl -s https://raw.githubusercontent.com/Colo-Thor/ChatGPT-Next-Web/main/scripts/setup.sh)
 ```
 
 ## Synchronizing Chat Records (UpStash)
