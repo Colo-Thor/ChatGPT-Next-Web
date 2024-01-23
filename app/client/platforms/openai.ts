@@ -33,11 +33,9 @@ export class ChatGPTApi implements LLMApi {
   path(path: string): string {
     const accessStore = useAccessStore.getState();
 
-    let isAzure;
+    let isAzure = false;
     if (accessStore.useCustomConfig) {
       isAzure = accessStore.provider === ServiceProvider.Azure;
-    } else {
-      isAzure = false;
     }
 
     if (isAzure && !accessStore.isValidAzure()) {
